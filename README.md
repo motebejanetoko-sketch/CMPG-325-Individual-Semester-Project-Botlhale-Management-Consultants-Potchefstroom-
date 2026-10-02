@@ -1,34 +1,26 @@
 
 
-# CMPG325 - Individual Semester Project
 
+# CMPG325 Semester Project — Botlhale Management Consultants
+
+**Project ID:** CMPG325-2026-088  
 **Student Name:** MOTEBEJANE, TP  
 **Student ID:** 43403638  
-**Project ID:** CMPG325-2026-088  
 **Client ID:** CLI-088  
 **Client:** Botlhale Management Consultants (Potchefstroom)  
-**Industry:** Professional Services  
 
 ---
 
-## Milestone 1: Client Design Review & Network Architecture
+## Milestone 1: Network Architecture & VLSM Design
 
-### 1. Core Objectives & Design Parameters
-Botlhale Management Consultants requires a secure, segmented, and scalable network infrastructure built from the allocated base network block **`172.30.60.0/23`** using **Variable Length Subnet Masking (VLSM)**.
-
-Key design requirements include:
-* **Departmental Isolation:** Separate broadcast domains for Department A and Department B sharing the same physical floor using VLANs.
-* **Port Security:** Switchport access control applied on edge ports (`Fa0/1` and `Fa0/11`) to prevent unauthorized network access.
-* **Client Change Request (CR4):** Implementation of an application/file server (`SRV1-CR4-Server`) placed in a dedicated server zone (VLAN 30) with Access Control List (ACL) restriction.
-* **Inter-VLAN Routing:** Router-on-a-Stick configuration deployed on core router `R1-Gateway` via `Gi0/0`.
+### 1. Network Overview
+This network design provides a secure, segmented, and scalable infrastructure for Botlhale Management Consultants using a `/23` base block (`172.30.60.0/23`). Inter-VLAN routing is handled via Router-on-a-Stick, and traffic access control policies restrict unauthorized access to the CR4 application server (`SRV1-CR4-Server`).
 
 ---
 
-### 2. IP Addressing Plan (VLSM)
+### 2. VLSM Subnetting Scheme
 
-**Assigned Base Block:** `172.30.60.0/23` | **Subnet Mask:** `255.255.254.0` | **Total Usable Host Range:** `172.30.60.1 - 172.30.61.254`
-
-| Subnet / Purpose | Subnet Address | Subnet Mask | CIDR | Usable IP Range | Default Gateway |
+| Subnet / Function | Network Address | Subnet Mask | CIDR | Usable IP Range | Default Gateway |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **VLAN 10: Department A** | 172.30.60.0 | 255.255.255.128 | /25 | 172.30.60.2 - 172.30.60.126 | 172.30.60.1 |
 | **VLAN 20: Department B** | 172.30.60.128 | 255.255.255.128 | /25 | 172.30.60.130 - 172.30.60.254 | 172.30.60.129 |
@@ -42,13 +34,29 @@ Key design requirements include:
 
 #### Physical Topology
 The physical network consists of end devices connected to the central switch `S1-CoreSwitch` and routed through `R1-Gateway`.
-![Physical Topology](docs/Topology_Diagram.png)
+
+![Physical Topology](docs/Physical_Topology.jpg)
 
 #### Logical Topology & Access Control
 Logical segmentation via VLANs, Router-on-a-Stick inter-VLAN routing, and ACL traffic restrictions for the CR4 application server.
-![Logical Topology](docs/Router_Status.png)
 
----
+![Logical Topology](docs/Logical_Topology.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Milestone 2: Network Implementation & Verification Evidence
 
